@@ -15,6 +15,7 @@ import { ITimepickerEvent } from './ITimepickerEvent';
                        [attr.required]="required"
                        [attr.placeholder]="datepickerOptions.placeholder || 'Choose date'"
                        [(ngModel)]="dateModel"
+                       (blur)="onTouched()"
                        (keyup)="checkEmptyValue($event)"/>
                 <div [hidden]="datepickerOptions.hideIcon || datepickerOptions === false || false"
                      (click)="showDatepicker()"
@@ -29,6 +30,7 @@ import { ITimepickerEvent } from './ITimepickerEvent';
                        [attr.placeholder]="timepickerOptions.placeholder || 'Set time'"
                        [(ngModel)]="timeModel"
                        (focus)="showTimepicker()"
+                       (blur)="onTouched()"
                        (keyup)="checkEmptyValue($event)">
                 <span [hidden]="timepickerOptions.hideIcon || false" class="input-group-addon">
                     <i [ngClass]="timepickerOptions.icon || 'glyphicon glyphicon-time'"></i>
@@ -64,6 +66,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     @HostListener('dateChange', ['$event'])
     onChange = (_: any) => {
     }
+    @HostListener('blur')
     onTouched = () => {
     }
 
