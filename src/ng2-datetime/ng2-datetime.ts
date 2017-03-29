@@ -1,6 +1,6 @@
 import {
     Component, Output, Input, EventEmitter, HostListener, AfterViewInit, OnDestroy,
-    SimpleChanges, OnChanges
+    SimpleChanges, OnChanges, HostBinding
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 import { ITimepickerEvent } from './ITimepickerEvent';
@@ -14,6 +14,7 @@ import { ITimepickerEvent } from './ITimepickerEvent';
                        [attr.readonly]="readonly"
                        [attr.required]="required"
                        [attr.placeholder]="datepickerOptions.placeholder || 'Choose date'"
+                       [attr.tabindex]="tabindex"
                        [(ngModel)]="dateModel"
                        (blur)="onTouched()"
                        (keyup)="checkEmptyValue($event)"/>
@@ -28,6 +29,7 @@ import { ITimepickerEvent } from './ITimepickerEvent';
                        [attr.readonly]="readonly"
                        [attr.required]="required"
                        [attr.placeholder]="timepickerOptions.placeholder || 'Set time'"
+                       [attr.tabindex]="tabindex"
                        [(ngModel)]="timeModel"
                        (focus)="showTimepicker()"
                        (blur)="onTouched()"
@@ -51,6 +53,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     @Input('hasClearButton') hasClearButton: boolean = false;
     @Input() readonly: boolean = null;
     @Input() required: boolean = null;
+    @Input() tabindex: string;
 
     date: Date; // ngModel
     dateModel: string;
@@ -68,6 +71,11 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     }
     @HostListener('blur')
     onTouched = () => {
+    }
+
+    @HostBinding('attr.tabindex')
+    get tabindexAttr(): string {
+        return this.tabindex === undefined ? '-1' : undefined;
     }
 
     constructor(ngControl: NgControl) {
