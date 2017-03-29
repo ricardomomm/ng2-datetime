@@ -26,10 +26,10 @@
     "url": "https://github.com/nkalinov/ng2-datetime.git"
   },
   "dependencies": {
-    "jquery": ">=2.2.1",
     "bootstrap": ">=3.0.0",
     "bootstrap-datepicker": "1.7.0-RC1",
-    "bootstrap-timepicker": "^0.5.2"
+    "bootstrap-timepicker": "^0.5.2",
+    "jquery": ">=2.2.1"
   },
   "devDependencies": {
     "@angular/common": "^2.4.1",
@@ -43,7 +43,7 @@
     "@types/jquery": "^2.0.37",
     "@types/node": "^6.0.55",
     "angular2-template-loader": "^0.4.0",
-    "awesome-typescript-loader": "^2.2.4",
+    "awesome-typescript-loader": "^3.1.2",
     "core-js": "^2.4.1",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
@@ -63,8 +63,8 @@
     "rimraf": "^2.5.2",
     "rxjs": "^5.0.2",
     "style-loader": "^0.13.1",
-    "tslint": "^4.2.0",
-    "typescript": "~2.0.10",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.2",
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0",
