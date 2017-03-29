@@ -9,7 +9,7 @@ import { ITimepickerEvent } from './ITimepickerEvent';
     selector: 'datetime',
     template: `
         <div class="form-inline ng2-datetime">
-            <div class="input-group date">
+            <div [ngClass]="{ 'form-group': true, 'input-group': !datepickerOptions.hideIcon, 'date': true }">
                 <input id="{{idDatePicker}}" type="text" class="form-control"
                        [attr.readonly]="readonly"
                        [attr.required]="required"
@@ -23,7 +23,7 @@ import { ITimepickerEvent } from './ITimepickerEvent';
                     <span [ngClass]="datepickerOptions.icon || 'glyphicon glyphicon-th'"></span>
                 </div>
             </div>
-            <div class="input-group bootstrap-timepicker timepicker">
+            <div [ngClass]="{ 'form-group': true, 'input-group': !timepickerOptions.hideIcon, 'bootstrap-timepicker timepicker': true }">
                 <input id="{{idTimePicker}}" type="text" class="form-control input-small"
                        [attr.readonly]="readonly"
                        [attr.required]="required"
