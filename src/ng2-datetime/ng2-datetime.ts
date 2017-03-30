@@ -1,12 +1,19 @@
 import {
     Component, Output, Input, EventEmitter, HostListener, AfterViewInit, OnDestroy,
-    SimpleChanges, OnChanges, HostBinding
+    SimpleChanges, OnChanges, HostBinding, forwardRef
 } from '@angular/core';
-import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ITimepickerEvent } from './ITimepickerEvent';
+
+const CUSTOM_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => NKDatetime),
+    multi: true
+};
 
 @Component({
     selector: 'datetime',
+    providers: [CUSTOM_ACCESSOR],
     template: `
         <div class="form-inline ng2-datetime">
             <div [ngClass]="{ 'form-group': true, 'input-group': !datepickerOptions.hideIcon, 'date': true }">
@@ -76,10 +83,6 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     @HostBinding('attr.tabindex')
     get tabindexAttr(): string {
         return this.tabindex === undefined ? '-1' : undefined;
-    }
-
-    constructor(ngControl: NgControl) {
-        ngControl.valueAccessor = this; // override valueAccessor
     }
 
     ngAfterViewInit() {
