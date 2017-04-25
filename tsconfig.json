@@ -9,8 +9,13 @@
     "removeComments": false,
     "noImplicitAny": true,
     "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
     "lib": [
       "dom", "es2015"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules/*"
+  ]
 }
