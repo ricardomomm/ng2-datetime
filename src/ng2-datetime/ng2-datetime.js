@@ -17,8 +17,6 @@ var NKDatetime = (function () {
         this.timepickerOptions = {};
         this.datepickerOptions = {};
         this.hasClearButton = false;
-        this.readonly = null;
-        this.required = null;
         this.idDatePicker = uniqueId('q-datepicker_');
         this.idTimePicker = uniqueId('q-timepicker_');
         this.onChange = function (_) {
@@ -92,11 +90,11 @@ var NKDatetime = (function () {
         if (value === '' && (this.timepickerOptions === false ||
             this.datepickerOptions === false ||
             (this.timeModel === '' && this.dateModel === ''))) {
-            this.dateChange.emit(null);
+            this.dateChange.emit(undefined);
         }
     };
     NKDatetime.prototype.clearModels = function () {
-        this.dateChange.emit(null);
+        this.dateChange.emit(undefined);
         if (this.timepicker) {
             this.timepicker.timepicker('setTime', null);
         }
