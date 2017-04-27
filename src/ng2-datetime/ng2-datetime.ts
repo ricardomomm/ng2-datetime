@@ -51,8 +51,8 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     @Input('timepicker') timepickerOptions: any = {};
     @Input('datepicker') datepickerOptions: any = {};
     @Input('hasClearButton') hasClearButton: boolean = false;
-    @Input() readonly: boolean = null;
-    @Input() required: boolean = null;
+    @Input() readonly: boolean;
+    @Input() required: boolean;
     @Input() tabindex: string;
 
     date: Date; // ngModel
@@ -74,7 +74,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     }
 
     @HostBinding('attr.tabindex')
-    get tabindexAttr(): string {
+    get tabindexAttr(): string | undefined {
         return this.tabindex === undefined ? '-1' : undefined;
     }
 
@@ -146,12 +146,12 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                 this.datepickerOptions === false ||
                 (this.timeModel === '' && this.dateModel === '')
             )) {
-            this.dateChange.emit(null);
+            this.dateChange.emit(undefined);
         }
     }
 
     clearModels() {
-        this.dateChange.emit(null);
+        this.dateChange.emit(undefined);
         if (this.timepicker) {
             this.timepicker.timepicker('setTime', null);
         }

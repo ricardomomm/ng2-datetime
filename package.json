@@ -32,12 +32,12 @@
     "jquery": ">=2.2.1"
   },
   "devDependencies": {
-    "@angular/common": "^2.4.1",
-    "@angular/compiler": "^2.4.1",
-    "@angular/core": "^2.4.1",
-    "@angular/forms": "^2.4.1",
-    "@angular/platform-browser": "^2.4.1",
-    "@angular/platform-browser-dynamic": "^2.4.1",
+    "@angular/common": "^4.0.3",
+    "@angular/compiler": "^4.0.3",
+    "@angular/core": "^4.0.3",
+    "@angular/forms": "^4.0.3",
+    "@angular/platform-browser": "^4.0.3",
+    "@angular/platform-browser-dynamic": "^4.0.3",
     "@types/core-js": "^0.9.35",
     "@types/jasmine": "^2.5.40",
     "@types/jquery": "^2.0.37",
@@ -68,6 +68,6 @@
     "webpack": "^1.14.0",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0",
-    "zone.js": "^0.7.4"
+    "zone.js": "^0.8.4"
   }
 }
