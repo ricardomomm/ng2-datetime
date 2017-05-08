@@ -182,8 +182,8 @@ datepickerOpts = &#123;
     <section class="panel panel-default">
         <div class="panel-heading"><h3 class="panel-title">Readonly</h3></div>
         <div class="panel-body">
-            <pre><code>&lt;datetime [(ngModel)]="date6" [readonly]="true">&lt;/datetime></code></pre>
-            <datetime [(ngModel)]="date6" [readonly]="true"></datetime>
+            <pre><code>&lt;datetime [(ngModel)]="date6" [readonly]="true" [timepicker]="false">&lt;/datetime></code></pre>
+            <datetime [(ngModel)]="date6" [timepicker]="false" [readonly]="true"></datetime>
             <h5><strong>ngModel:</strong> {{getDate(date6) | date: "medium"}}</h5>
         </div>
     </section>

@@ -25,7 +25,7 @@ const CUSTOM_ACCESSOR = {
                        [(ngModel)]="dateModel"
                        (blur)="onTouched()"
                        (keyup)="checkEmptyValue($event)"/>
-                <div [hidden]="datepickerOptions.hideIcon || datepickerOptions === false || false"
+                <div [hidden]="datepickerOptions.hideIcon || datepickerOptions === false"
                      (click)="showDatepicker()"
                      class="input-group-addon">
                     <span [ngClass]="datepickerOptions.icon || 'glyphicon glyphicon-th'"></span>
