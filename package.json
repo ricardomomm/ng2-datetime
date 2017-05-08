@@ -1,6 +1,6 @@
 {
   "name": "ng2-datetime",
-  "version": "1.3.2",
+  "version": "1.4.0",
   "description": "Bootstrap datetime picker for Angular",
   "main": "ng2-datetime.js",
   "typings": "ng2-datetime.d.ts",
@@ -18,7 +18,7 @@
     "start": "webpack-dev-server --inline --progress --port 8080",
     "test": "karma start",
     "tsc": "tsc",
-    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail && npm run tsc && cp .nojekyll dist/"
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail && npm run tsc"
   },
   "license": "MIT",
   "repository": {

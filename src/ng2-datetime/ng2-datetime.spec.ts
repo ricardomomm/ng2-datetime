@@ -25,7 +25,7 @@ describe('ng2-datetime', () => {
             const fixture = TestBed.createComponent(DatePickerComponent);
             const component = getComponent(fixture, NKDatetime);
 
-            fixture.componentInstance.date = null;
+            (<any>fixture.componentInstance).date = null;
 
             tickAndDetect(fixture);
 

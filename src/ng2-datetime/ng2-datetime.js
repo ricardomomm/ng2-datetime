@@ -11,8 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
+var CUSTOM_ACCESSOR = {
+    provide: forms_1.NG_VALUE_ACCESSOR,
+    useExisting: core_1.forwardRef(function () { return NKDatetime; }),
+    multi: true
+};
 var NKDatetime = (function () {
-    function NKDatetime(ngControl) {
+    function NKDatetime() {
         this.dateChange = new core_1.EventEmitter();
         this.timepickerOptions = {};
         this.datepickerOptions = {};
@@ -23,7 +28,6 @@ var NKDatetime = (function () {
         };
         this.onTouched = function () {
         };
-        ngControl.valueAccessor = this; // override valueAccessor
     }
     Object.defineProperty(NKDatetime.prototype, "tabindexAttr", {
         get: function () {
@@ -202,7 +206,7 @@ __decorate([
 ], NKDatetime.prototype, "datepickerOptions", void 0);
 __decorate([
     core_1.Input('hasClearButton'),
-    __metadata("design:type", Boolean)
+    __metadata("design:type", Object)
 ], NKDatetime.prototype, "hasClearButton", void 0);
 __decorate([
     core_1.Input(),
@@ -232,12 +236,12 @@ __decorate([
 NKDatetime = __decorate([
     core_1.Component({
         selector: 'datetime',
-        template: "\n        <div class=\"form-inline ng2-datetime\">\n            <div [ngClass]=\"{ 'form-group': true, 'input-group': !datepickerOptions.hideIcon, 'date': true }\">\n                <input id=\"{{idDatePicker}}\" type=\"text\" class=\"form-control\"\n                       [attr.readonly]=\"readonly\"\n                       [attr.required]=\"required\"\n                       [attr.placeholder]=\"datepickerOptions.placeholder || 'Choose date'\"\n                       [attr.tabindex]=\"tabindex\"\n                       [(ngModel)]=\"dateModel\"\n                       (blur)=\"onTouched()\"\n                       (keyup)=\"checkEmptyValue($event)\"/>\n                <div [hidden]=\"datepickerOptions.hideIcon || datepickerOptions === false || false\"\n                     (click)=\"showDatepicker()\"\n                     class=\"input-group-addon\">\n                    <span [ngClass]=\"datepickerOptions.icon || 'glyphicon glyphicon-th'\"></span>\n                </div>\n            </div>\n            <div [ngClass]=\"{ 'form-group': true, 'input-group': !timepickerOptions.hideIcon, 'bootstrap-timepicker timepicker': true }\">\n                <input id=\"{{idTimePicker}}\" type=\"text\" class=\"form-control input-small\"\n                       [attr.readonly]=\"readonly\"\n                       [attr.required]=\"required\"\n                       [attr.placeholder]=\"timepickerOptions.placeholder || 'Set time'\"\n                       [attr.tabindex]=\"tabindex\"\n                       [(ngModel)]=\"timeModel\"\n                       (focus)=\"showTimepicker()\"\n                       (blur)=\"onTouched()\"\n                       (keyup)=\"checkEmptyValue($event)\">\n                <span [hidden]=\"timepickerOptions.hideIcon || false\" class=\"input-group-addon\">\n                    <i [ngClass]=\"timepickerOptions.icon || 'glyphicon glyphicon-time'\"></i>\n                </span>\n            </div>\n            <button *ngIf=\"hasClearButton\" type=\"button\" (click)=\"clearModels()\">Clear</button>\n        </div>\n    ",
+        providers: [CUSTOM_ACCESSOR],
+        template: "\n        <div class=\"form-inline ng2-datetime\">\n            <div [ngClass]=\"{ 'form-group': true, 'input-group': !datepickerOptions.hideIcon, 'date': true }\">\n                <input id=\"{{idDatePicker}}\" type=\"text\" class=\"form-control\"\n                       [attr.readonly]=\"readonly\"\n                       [attr.required]=\"required\"\n                       [attr.placeholder]=\"datepickerOptions.placeholder || 'Choose date'\"\n                       [attr.tabindex]=\"tabindex\"\n                       [(ngModel)]=\"dateModel\"\n                       [formControl]=\"ngControl.control\"\n                       (blur)=\"onTouched()\"\n                       (keyup)=\"checkEmptyValue($event)\"/>\n                <div [hidden]=\"datepickerOptions.hideIcon || datepickerOptions === false || false\"\n                     (click)=\"showDatepicker()\"\n                     class=\"input-group-addon\">\n                    <span [ngClass]=\"datepickerOptions.icon || 'glyphicon glyphicon-th'\"></span>\n                </div>\n            </div>\n            <div [ngClass]=\"{ 'form-group': true, 'input-group': !timepickerOptions.hideIcon, 'bootstrap-timepicker timepicker': true }\">\n                <input id=\"{{idTimePicker}}\" type=\"text\" class=\"form-control input-small\"\n                       [attr.readonly]=\"readonly\"\n                       [attr.required]=\"required\"\n                       [attr.placeholder]=\"timepickerOptions.placeholder || 'Set time'\"\n                       [attr.tabindex]=\"tabindex\"\n                       [(ngModel)]=\"timeModel\"\n                       (focus)=\"showTimepicker()\"\n                       (blur)=\"onTouched()\"\n                       (keyup)=\"checkEmptyValue($event)\">\n                <span [hidden]=\"timepickerOptions.hideIcon || false\" class=\"input-group-addon\">\n                    <i [ngClass]=\"timepickerOptions.icon || 'glyphicon glyphicon-time'\"></i>\n                </span>\n            </div>\n            <button *ngIf=\"hasClearButton\" type=\"button\" (click)=\"clearModels()\">Clear</button>\n        </div>\n    ",
         styles: [
             '.ng2-datetime *[hidden] { display: none; }'
         ]
-    }),
-    __metadata("design:paramtypes", [forms_1.NgControl])
+    })
 ], NKDatetime);
 exports.NKDatetime = NKDatetime;
 var id = 0;

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'my-app',
     templateUrl: './app.component.html'
 })
 export class AppComponent {
-    date: Date;
     date2: Date = new Date(2016, 5, 10);
     date3: Date;
     date4: Date;
@@ -18,9 +18,19 @@ export class AppComponent {
         format: 'D, d MM yyyy'
     };
     date5: Date = new Date();
+    date6: Date = new Date();
     dateFrom: Date;
     dateTo: Date;
     datepickerToOpts: any = {};
+    form: FormGroup;
+
+    constructor(private formBuilder: FormBuilder) { }
+
+    ngOnInit() {
+        this.form = this.formBuilder.group({
+            date: [new Date(1991, 8, 12)]
+        });
+    }
 
     handleDateFromChange(dateFrom: Date) {
         // update the model

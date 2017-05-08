@@ -1,9 +1,9 @@
 import {
-    Component, Output, Input, EventEmitter, HostListener, AfterViewInit, OnDestroy,
+    Component, Input, HostListener, AfterViewInit, OnDestroy,
     SimpleChanges, OnChanges, HostBinding, forwardRef
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ITimepickerEvent } from './ITimepickerEvent';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {ITimepickerEvent} from './ITimepickerEvent';
 
 const CUSTOM_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
@@ -54,10 +54,9 @@ const CUSTOM_ACCESSOR = {
 })
 
 export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestroy, OnChanges {
-    @Output() dateChange: EventEmitter<Date> = new EventEmitter<Date>();
     @Input('timepicker') timepickerOptions: any = {};
     @Input('datepicker') datepickerOptions: any = {};
-    @Input('hasClearButton') hasClearButton: boolean = false;
+    @Input('hasClearButton') hasClearButton: boolean;
     @Input() readonly: boolean;
     @Input() required: boolean;
     @Input() tabindex: string;
@@ -73,9 +72,9 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     idDatePicker: string = uniqueId('q-datepicker_');
     idTimePicker: string = uniqueId('q-timepicker_');
 
-    @HostListener('dateChange', ['$event'])
     onChange = (_: any) => {
     }
+
     @HostListener('blur')
     onTouched = () => {
     }
@@ -123,7 +122,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
         }
     }
 
-    writeValue(value: any): void {
+    writeValue(value: any) {
         this.date = value;
         if (isDate(this.date)) {
             setTimeout(() => {
@@ -134,11 +133,11 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
         }
     }
 
-    registerOnChange(fn: (_: any) => void): void {
+    registerOnChange(fn: (_: any) => void) {
         this.onChange = fn;
     }
 
-    registerOnTouched(fn: () => void): void {
+    registerOnTouched(fn: () => void) {
         this.onTouched = fn;
     }
 
@@ -149,12 +148,12 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                 this.datepickerOptions === false ||
                 (this.timeModel === '' && this.dateModel === '')
             )) {
-            this.dateChange.emit(undefined);
+            this.onChange(undefined);
         }
     }
 
     clearModels() {
-        this.dateChange.emit(undefined);
+        this.onChange(undefined);
         if (this.timepicker) {
             this.timepicker.timepicker('setTime', null);
         }
@@ -173,7 +172,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
 
     private init(): void {
         if (!this.datepicker && this.datepickerOptions !== false) {
-            let options = jQuery.extend({ enableOnReadonly: !this.readonly }, this.datepickerOptions);
+            let options = jQuery.extend({enableOnReadonly: !this.readonly}, this.datepickerOptions);
             this.datepicker = (<any>$('#' + this.idDatePicker)).datepicker(options);
             this.datepicker
                 .on('changeDate', (e: any) => {
@@ -187,18 +186,18 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                     }
 
                     this.date = newDate;
-                    this.dateChange.emit(newDate);
+                    this.onChange(newDate);
                 });
         } else if (this.datepickerOptions === false) {
             (<any>$('#' + this.idDatePicker)).remove();
         }
 
         if (!this.timepicker && this.timepickerOptions !== false) {
-            let options = jQuery.extend({ defaultTime: false }, this.timepickerOptions);
+            let options = jQuery.extend({defaultTime: false}, this.timepickerOptions);
             this.timepicker = (<any>$('#' + this.idTimePicker)).timepicker(options);
             this.timepicker
                 .on('changeTime.timepicker', (e: ITimepickerEvent) => {
-                    let { meridian, hours } = e.time;
+                    let {meridian, hours} = e.time;
 
                     if (meridian) {
                         // has meridian -> convert 12 to 24h
@@ -219,7 +218,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                     this.date.setHours(hours);
                     this.date.setMinutes(e.time.minutes);
                     this.date.setSeconds(e.time.seconds);
-                    this.dateChange.emit(this.date);
+                    this.onChange(this.date);
                 });
         } else if (this.timepickerOptions === false) {
             (<any>$('#' + this.idTimePicker)).parent().remove();
