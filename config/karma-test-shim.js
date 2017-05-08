@@ -11,6 +11,10 @@ require('zone.js/dist/jasmine-patch');
 require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
 
+window.jQuery = window.$ = require('jquery');
+require('bootstrap-datepicker');
+require('bootstrap-timepicker');
+
 var appContext = require.context('../src', true, /\.spec\.ts/);
 
 appContext.keys().forEach(appContext);
