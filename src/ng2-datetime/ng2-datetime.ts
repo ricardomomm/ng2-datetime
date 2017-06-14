@@ -15,8 +15,8 @@ const CUSTOM_ACCESSOR = {
     selector: 'datetime',
     providers: [CUSTOM_ACCESSOR],
     template: `
-        <div class="form-inline ng2-datetime">
-            <div [ngClass]="{ 'form-group': true, 'input-group': !datepickerOptions.hideIcon, 'date': true }">
+        <div class="ng2-datetime">
+            <div [ngClass]="{ 'input-group': !datepickerOptions.hideIcon, 'date': true }">
                 <input id="{{idDatePicker}}" type="text" class="form-control"
                        [attr.readonly]="readonly"
                        [attr.required]="required"
@@ -31,7 +31,7 @@ const CUSTOM_ACCESSOR = {
                     <span [ngClass]="datepickerOptions.icon || 'glyphicon glyphicon-th'"></span>
                 </div>
             </div>
-            <div [ngClass]="{ 'form-group': true, 'input-group': !timepickerOptions.hideIcon, 'bootstrap-timepicker timepicker': true }">
+            <div [ngClass]="{ 'input-group': !timepickerOptions.hideIcon, 'bootstrap-timepicker timepicker': true }">
                 <input id="{{idTimePicker}}" type="text" class="form-control input-small"
                        [attr.readonly]="readonly"
                        [attr.required]="required"
@@ -207,7 +207,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
                         if (meridian === 'AM' && hours === 12) {
                             hours = hours - 12;
                         }
-                        hours = parseInt(this.pad(hours));
+                        hours = parseInt(this.pad(hours), 10);
                     }
 
                     if (!isDate(this.date)) {
