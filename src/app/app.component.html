@@ -13,7 +13,9 @@
         <div class="panel-body">
             <pre><code>&lt;datetime [(ngModel)]="date">&lt;/datetime></code></pre>
             <form [formGroup]="form" (submit)="submit()">
-                <datetime formControlName="date"></datetime>
+                <div class="form-inline">
+                    <datetime formControlName="date"></datetime>
+                </div>
             </form>
             <h5><strong>ngModel:</strong> {{getDate(form.get('date').value) | date: "medium"}}</h5>
         </div>
