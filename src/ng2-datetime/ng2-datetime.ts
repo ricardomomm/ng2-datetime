@@ -51,7 +51,8 @@ const CUSTOM_ACCESSOR = {
         </div>
     `,
     styles: [
-        '.ng2-datetime *[hidden] { display: none; }'
+    '.ng2-datetime *[hidden] { display: none; }',
+    '.ng2-datetime > .input-group { margin-right: 5px;}'
     ]
 })
 
@@ -164,7 +165,6 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     }
 
     showTimepicker() {
-    	console.debug("time picker")
         this.timepicker.timepicker('showWidget');
     }
 
