@@ -24,7 +24,7 @@ const CUSTOM_ACCESSOR = {
                        [attr.tabindex]="tabindex"
                        [(ngModel)]="dateModel"
                        (blur)="onTouched()"
-                       (keyup)="checkEmptyValue($event)"/>
+                       (keyup)="checkEmptyValue($event)" />
                 <div [hidden]="datepickerOptions.hideIcon || datepickerOptions === false"
                      (click)="showDatepicker()"
                      class="input-group-addon">
@@ -40,10 +40,12 @@ const CUSTOM_ACCESSOR = {
                        [(ngModel)]="timeModel"
                        (focus)="showTimepicker()"
                        (blur)="onTouched()"
-                       (keyup)="checkEmptyValue($event)">
-                <span [hidden]="timepickerOptions.hideIcon || false" class="input-group-addon">
+		       (keyup)="checkEmptyValue($event)" />
+	       <div [hidden]="timepickerOptions.hideIcon || timepickerOptions === false" 
+		     (click)="showTimepicker()"
+	             class="input-group-addon">
                     <i [ngClass]="timepickerOptions.icon || 'fa fa-clock-o'" aria-hidden="true"></i>
-                </span>
+                </div>
             </div>
             <button *ngIf="hasClearButton" type="button" (click)="clearModels()">Clear</button>
         </div>
@@ -162,6 +164,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     }
 
     showTimepicker() {
+    	console.debug("time picker")
         this.timepicker.timepicker('showWidget');
     }
 
