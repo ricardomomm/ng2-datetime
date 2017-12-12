@@ -14,8 +14,8 @@ const CUSTOM_ACCESSOR = {
 @Component({
     selector: 'datetime',
     providers: [CUSTOM_ACCESSOR],
-    template: `
-        <div class="ng2-datetime">
+    template:`
+    	<div class="ng2-datetime" [ngClass]="{ 'form-inline': formInline }">
             <div [ngClass]="{ 'input-group': !datepickerOptions.hideIcon, 'date': true }">
                 <input id="{{idDatePicker}}" type="text" class="form-control"
                        [attr.readonly]="readonly"
@@ -57,6 +57,7 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
     @Input('timepicker') timepickerOptions: any = {};
     @Input('datepicker') datepickerOptions: any = {};
     @Input('hasClearButton') hasClearButton: boolean;
+    @Input() formInline: boolean = false;
     @Input() readonly: boolean;
     @Input() required: boolean;
     @Input() tabindex: string;
