@@ -172,6 +172,13 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
         this.datepicker.datepicker('show');
     }
 
+    reload() {
+        this.datepicker.datepicker('destroy');
+        this.datepicker = null;
+        this.timepicker = null;
+        this.init();
+    }
+
     //////////////////////////////////
 
     private init(): void {
