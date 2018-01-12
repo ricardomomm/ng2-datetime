@@ -33,12 +33,12 @@
     "jquery": ">=2.2.1"
   },
   "devDependencies": {
-    "@angular/common": "^4.0.3",
-    "@angular/compiler": "^4.0.3",
-    "@angular/core": "^4.0.3",
-    "@angular/forms": "^4.0.3",
-    "@angular/platform-browser": "^4.0.3",
-    "@angular/platform-browser-dynamic": "^4.0.3",
+    "@angular/common": "^4.0.3 || ^5.0.0",
+    "@angular/compiler": "^4.0.3 || ^5.0.0",
+    "@angular/core": "^4.0.3 || ^5.0.0",
+    "@angular/forms": "^4.0.3 || ^5.0.0",
+    "@angular/platform-browser": "^4.0.3 || ^5.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.3 || ^5.0.0",
     "@types/core-js": "^0.9.35",
     "@types/jasmine": "^2.5.40",
     "@types/jquery": "^2.0.37",
