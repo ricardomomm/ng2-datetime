@@ -14,7 +14,7 @@ const CUSTOM_ACCESSOR = {
 @Component({
     selector: 'datetime',
     providers: [CUSTOM_ACCESSOR],
-    template:`
+    template: `
     	<div class="ng2-datetime" [ngClass]="{ 'form-inline': formInline }">
             <div [ngClass]="{ 'input-group': !datepickerOptions.hideIcon, 'date': true }">
                 <input id="{{idDatePicker}}" type="text" class="form-control"
@@ -41,7 +41,7 @@ const CUSTOM_ACCESSOR = {
                        (focus)="showTimepicker()"
                        (blur)="onTouched()"
 		       (keyup)="checkEmptyValue($event)" />
-	       <div [hidden]="timepickerOptions.hideIcon || timepickerOptions === false" 
+	       <div [hidden]="timepickerOptions.hideIcon || timepickerOptions === false"
 		     (click)="showTimepicker()"
 	             class="input-group-addon">
                     <i [ngClass]="timepickerOptions.icon || 'fa fa-clock-o'" aria-hidden="true"></i>
@@ -174,8 +174,8 @@ export class NKDatetime implements ControlValueAccessor, AfterViewInit, OnDestro
 
     reload() {
         this.datepicker.datepicker('destroy');
-        this.datepicker = null;
-        this.timepicker = null;
+        delete this.datepicker;
+        delete this.timepicker;
         this.init();
     }
 
